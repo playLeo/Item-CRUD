@@ -25,11 +25,17 @@ public class BasicItemController {
         return "basic/items";
     }
 
+    @GetMapping("/{itemId}/delete")
+    public String delete(@PathVariable Long itemId, Model model) {
+        model.addAttribute("item", itemRepository.findById(itemId));
+        return "basic/deleteForm";
+    }
+
     //PRG 패턴 적용
-    @PostMapping
-    public String itemDelete(Item item) {
-        itemRepository.deleteById(item.getId());
-        return "redirect:basic/items";
+    @PostMapping("/{itemId}/delete")
+    public String itemDelete(@PathVariable Long itemId) {
+        itemRepository.deleteById(itemId);
+        return "redirect:/items";
     }
 
     @GetMapping("/{itemId}")
