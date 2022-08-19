@@ -1,5 +1,6 @@
-package hello.itemservice.domain.item;
+package hello.itemservice.repository;
 
+import hello.itemservice.domain.Item;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

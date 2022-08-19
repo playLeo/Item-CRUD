@@ -1,5 +1,7 @@
-package hello.itemservice.domain.item;
+package hello.itemservice.controller;
 
+import hello.itemservice.domain.Item;
+import hello.itemservice.repository.ItemRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,8 @@ import static org.assertj.core.api.Assertions.*;
 @SpringBootTest
 class ItemRepositoryTest {
 
-    @Autowired ItemRepository itemRepository;
+    @Autowired
+    ItemRepository itemRepository;
 
     @Test
     @Transactional
@@ -42,7 +45,7 @@ class ItemRepositoryTest {
         Item item1 = new Item("itemY", 10000, 10);
         Item item2 = new Item("itemZ", 20000, 20);
 
-         itemRepository.save(item1);
+        itemRepository.save(item1);
         itemRepository.save(item2);
 
         //when
