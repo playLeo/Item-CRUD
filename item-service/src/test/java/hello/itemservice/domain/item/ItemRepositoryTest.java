@@ -1,26 +1,30 @@
 package hello.itemservice.domain.item;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 class ItemRepositoryTest {
 
-    ItemRepository itemRepository = new ItemRepository();
-
-    @AfterEach
-    void afterEach() {
-        itemRepository.clearStore();
-    }
+    @Autowired ItemRepository itemRepository;
 
     @Test
-    void save() {
+    @Transactional
+    @Rollback(false)
+    public void testItem() {
         //given
-        Item item = new Item("itemA", 10000, 10);
+        Item item = new Item("itemZ", 10000, 10);
 
         //when
         Item savedItem = itemRepository.save(item);
@@ -31,12 +35,14 @@ class ItemRepositoryTest {
     }
 
     @Test
+    @Transactional
+    @Rollback(false)
     void findAll() {
         //given
-        Item item1 = new Item("item1", 10000, 10);
-        Item item2 = new Item("item2", 20000, 20);
+        Item item1 = new Item("itemY", 10000, 10);
+        Item item2 = new Item("itemZ", 20000, 20);
 
-        itemRepository.save(item1);
+         itemRepository.save(item1);
         itemRepository.save(item2);
 
         //when
@@ -48,15 +54,17 @@ class ItemRepositoryTest {
     }
 
     @Test
+    @Transactional
+    @Rollback(false)
     void updateItem() {
         //given
-        Item item = new Item("item1", 10000, 10);
+        Item item = new Item("itemX", 10000, 10);
 
         Item savedItem = itemRepository.save(item);
         Long itemId = savedItem.getId();
 
         //when
-        Item updateParam = new Item("item2", 20000, 30);
+        Item updateParam = new Item("itemX", 20000, 30);
         itemRepository.update(itemId, updateParam);
 
         Item findItem = itemRepository.findById(itemId);

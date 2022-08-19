@@ -1,14 +1,20 @@
 package hello.itemservice.domain.item;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import javax.persistence.*;
+
+@Getter @Setter
+@Entity
+@Table(name="item")
 public class Item {
 
+    @Id @GeneratedValue
     private Long id;
     private String itemName;
-    private Integer price;
-    private Integer quantity;
+    private int price;
+    private int quantity;
 
     public Item() {
     }

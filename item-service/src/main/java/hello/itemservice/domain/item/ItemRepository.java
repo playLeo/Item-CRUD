@@ -2,44 +2,43 @@ package hello.itemservice.domain.item;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class ItemRepository {
 
-    private static final Map<Long, Item> store = new HashMap<>(); //static
-    private static long sequence = 0L; //static
+    @PersistenceContext
+    private EntityManager em;
 
     public Item save(Item item) {
-        item.setId(++sequence);
-        store.put(item.getId(), item);
+        em.persist(item);
         return item;
     }
 
     public void deleteById(Long id) {
-        store.remove(id);
+        Item item = em.find(Item.class, id);
+        em.remove(item);
     }
 
     public Item findById(Long id) {
-        return store.get(id);
+        return em.find(Item.class, id);
     }
 
     public List<Item> findAll() {
-        return new ArrayList<>(store.values());
+        return em.createQuery("select i from Item i", Item.class)
+                .getResultList();
     }
 
     public void update(Long itemId, Item updateParam) {
-        Item findItem = findById(itemId);
-        findItem.setItemName(updateParam.getItemName());
-        findItem.setPrice(updateParam.getPrice());
-        findItem.setQuantity(updateParam.getQuantity());
-    }
+        Item savedItem = em.createQuery("select i from Item i where i.id = :id", Item.class)
+                .setParameter("id", itemId)
+                .getSingleResult();
 
-    public void clearStore() {
-        store.clear();
+        savedItem.setItemName(updateParam.getItemName());
+        savedItem.setPrice(updateParam.getPrice());
+        savedItem.setQuantity(updateParam.getQuantity());
     }
 
 }

@@ -120,11 +120,27 @@ public class BasicItemController {
     /**
      * 테스트용 데이터 추가
      */
-    @PostConstruct
-    public void init() {
-        itemRepository.save(new Item("itemA", 10000, 10));
-        itemRepository.save(new Item("itemB", 20000, 20));
-    }
+//    @PostConstruct
+//    public void init() {
+//        itemRepository.save(new Item("itemA", 10000, 10));
+//        itemRepository.save(new Item("itemB", 20000, 20));
+//        itemRepository.save(new Item("itemC", 10000, 30));
+//        itemRepository.save(new Item("itemD", 20000, 40));
+//        itemRepository.save(new Item("itemE", 10000, 40));
+//        itemRepository.save(new Item("itemF", 20000, 250));
+//        itemRepository.save(new Item("itemG", 10000, 10));
+//        itemRepository.save(new Item("itemH", 20000, 20));
+//        itemRepository.save(new Item("itemI", 10000, 10));
+//        itemRepository.save(new Item("itemJ", 20000, 220));
+//        itemRepository.save(new Item("itemK", 10000, 10));
+//        itemRepository.save(new Item("itemL", 20000, 220));
+//        itemRepository.save(new Item("itemM", 300, 105));
+//        itemRepository.save(new Item("itemN", 20000, 270));
+//        itemRepository.save(new Item("itemO", 10000, 109));
+//        itemRepository.save(new Item("itemP", 2000, 203));
+//        itemRepository.save(new Item("itemQ", 1000, 180));
+//        itemRepository.save(new Item("itemR", 2000, 202));
+//    }
 
 }
 
