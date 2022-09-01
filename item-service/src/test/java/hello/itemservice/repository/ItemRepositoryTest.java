@@ -1,4 +1,4 @@
-package hello.itemservice.controller;
+package hello.itemservice.repository;
 
 import hello.itemservice.domain.Item;
 import hello.itemservice.repository.ItemRepository;
@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,14 +29,16 @@ class ItemRepositoryTest {
     @Rollback(false)
     public void testItem() {
         //given
-        Item item = new Item("itemZ", 10000, 10);
+//        Item item = new Item("itemZ", 10000, 10);
+//
+//        //when
+//        Item savedItem = itemRepository.save(item);
+//
+//        //then
+//        Item findItem = itemRepository.findById(item.getId());
+//        assertThat(findItem).isEqualTo(savedItem);
 
-        //when
-        Item savedItem = itemRepository.save(item);
-
-        //then
-        Item findItem = itemRepository.findById(item.getId());
-        assertThat(findItem).isEqualTo(savedItem);
+        System.out.println("여기입니다"+itemRepository.getClass());
     }
 
     @Test

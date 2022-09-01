@@ -28,10 +28,12 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
+    @Transactional
     public void deleteItem(Long id) {
         itemRepository.deleteById(id);
     }
 
+    @Transactional
     public void updateItem(long id, Item item) {
         itemRepository.update(id, item);
     }
