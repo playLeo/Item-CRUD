@@ -56,7 +56,7 @@ public class MemberController {
     public String addMember(Member member, RedirectAttributes redirectAttributes) {
         memberService.saveMember(member);
         redirectAttributes.addAttribute("userId", member.getId());
-        redirectAttributes.addAttribute("status", true);
+        redirectAttributes.addAttribute( "status", true);
         return "redirect:/members/{userId}";
     }
 
